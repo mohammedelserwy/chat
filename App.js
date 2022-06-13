@@ -56,7 +56,7 @@ export default class Chat extends React.Component {
               <View
 
                 style={{
-                  alignSelf: "",
+                  
                   alignItems: "center",
                   width: 80,
                   height: 25,
