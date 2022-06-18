@@ -43,7 +43,20 @@ export default class Chat extends React.Component {
         this.setState({ allMessages: messages.reverse() });
       });
   }
+ componentWillUnmount() {
+    const onValueChange = database()
+      .ref('/users')
+      .on('value', snapshot => {
+        let messages = [];
+        snapshot.forEach(element => {
+          console.log(element);
 
+          messages.push(element.val());
+        });
+        this.setState({ allMessages: messages.reverse() });
+      });
+    database().ref(`/users`).off('value', onValueChange);
+  }
   render() {
     return (
       <View style={{ flex: 1 }}>
